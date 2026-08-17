@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+:root {
+  --color-canvas: oklch(99% 0 0);
+  --color-panel: oklch(97.5% 0 0);
+  --color-border-subtle: oklch(0% 0 0 / 8%);
+  --color-foreground: oklch(20% 0 0);
+  --color-muted-foreground: oklch(48% 0 0);
+  --color-accent: oklch(55% 0.18 264);
+  --color-accent-foreground: oklch(99% 0 0);
+  --color-item-hover: oklch(0% 0 0 / 4%);
+  --color-item-active: oklch(0% 0 0 / 6%);
+  --shadow-panel:
+    0 0 0 1px rgb(0 0 0 / 0.05),
+    0 1px 3px rgb(0 0 0 / 0.05),
+    0 16px 32px -12px rgb(0 0 0 / 0.18);
+}
+
+@theme inline {
+  --color-canvas: var(--color-canvas);
+  --color-panel: var(--color-panel);
+  --color-border-subtle: var(--color-border-subtle);
+  --color-foreground: var(--color-foreground);
+  --color-muted-foreground: var(--color-muted-foreground);
+  --color-accent: var(--color-accent);
+  --color-accent-foreground: var(--color-accent-foreground);
+  --color-item-hover: var(--color-item-hover);
+  --color-item-active: var(--color-item-active);
+  --shadow-panel: var(--shadow-panel);
+  --font-sans: var(--font-inter);
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+
+* {
+  border-color: var(--color-border-subtle);
+}
