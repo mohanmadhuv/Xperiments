@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --color-canvas: oklch(99% 0 0);
-  --color-panel: oklch(97.5% 0 0);
-  --color-border-subtle: oklch(0% 0 0 / 8%);
-  --color-foreground: oklch(20% 0 0);
-  --color-muted-foreground: oklch(48% 0 0);
-  --color-accent: oklch(55% 0.18 264);
+  --color-canvas: oklch(15% 0 0);
+  --color-panel: oklch(19% 0 0);
+  --color-border-subtle: oklch(100% 0 0 / 10%);
+  --color-foreground: oklch(97% 0 0);
+  --color-muted-foreground: oklch(72% 0 0);
+  --color-accent: oklch(62% 0.19 264);
   --color-accent-foreground: oklch(99% 0 0);
-  --color-item-hover: oklch(0% 0 0 / 4%);
-  --color-item-active: oklch(0% 0 0 / 6%);
+  --color-item-hover: oklch(100% 0 0 / 8%);
+  --color-item-active: oklch(100% 0 0 / 12%);
   --shadow-panel:
-    0 0 0 1px rgb(0 0 0 / 0.05),
-    0 1px 3px rgb(0 0 0 / 0.05),
-    0 16px 32px -12px rgb(0 0 0 / 0.18);
+    0 0 0 1px rgb(255 255 255 / 0.08),
+    0 1px 3px rgb(0 0 0 / 0.3),
+    0 16px 32px -12px rgb(0 0 0 / 0.5);
 }
 
 @theme inline {
@@ -35,6 +35,8 @@ body {
   color: var(--color-foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
   font-size: 16px;
+  line-height: 1.618;
+  letter-spacing: -0.32px;
 }
 
 * {

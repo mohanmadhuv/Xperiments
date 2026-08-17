@@ -1,7 +1,9 @@
 export default function Home() {
   return (
-    <div className="flex flex-1 flex-col items-center justify-center px-8 text-center">
-      <h1 className="font-medium text-foreground">Nothing built yet</h1>
+    <div className="flex flex-1 justify-center px-8 pt-32">
+      <div className="max-w-[720px]">
+        <h1 className="font-medium text-foreground">Higher taste for good UI</h1>
+      </div>
     </div>
   );
 }
