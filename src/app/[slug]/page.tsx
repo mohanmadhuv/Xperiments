@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { notFound } from "next/navigation";
 import { components, getComponent } from "@/lib/registry";
 import { getProject, projects } from "@/lib/projects";
@@ -30,22 +31,30 @@ export default async function SlugPage({
   if (project) {
     const ProjectComponent = project.component;
     return (
-      <div className="flex flex-1 justify-center px-8 pt-32">
-        <div className="max-w-[720px]">
-          <h1 className="font-medium text-foreground">{project.title}</h1>
-          <p className="mt-4 text-muted-foreground">{project.description}</p>
-          <div className="mt-4 flex min-h-[480px] items-center justify-center rounded-lg border bg-panel">
-            {ProjectComponent && <ProjectComponent />}
+      <div className="flex flex-1 justify-center px-8 pt-[120px] pb-[120px]">
+        <div className="flex max-w-[720px] flex-col gap-[32px]">
+          <div className="flex flex-col gap-[16px]">
+            <h1 className="font-medium text-foreground">{project.title}</h1>
           </div>
-          {project.caption && (
-            <p className="mt-4 text-center text-muted-foreground">{project.caption}</p>
-          )}
-          {project.sections?.map((section) => (
-            <div key={section.heading} className="mt-4">
-              <h2 className="font-medium text-foreground">{section.heading}</h2>
-              <p className="mt-4 text-muted-foreground">{section.body}</p>
+          <div className="flex flex-col gap-[16px]">
+            <p className="text-muted-foreground">{project.description}</p>
+            <div className="mb-[16px] flex flex-col">
+              <div className="flex min-h-[480px] items-center justify-center rounded-lg border bg-panel">
+                {ProjectComponent && <ProjectComponent />}
+              </div>
+              {project.caption && (
+                <p className="mt-[16px] text-center text-muted-foreground">{project.caption}</p>
+              )}
             </div>
-          ))}
+            {project.sections?.map((section) => (
+              <Fragment key={section.heading}>
+                <h2 className="mt-[-16px] pt-[32px] font-medium text-foreground">
+                  {section.heading}
+                </h2>
+                <p className="text-muted-foreground">{section.body}</p>
+              </Fragment>
+            ))}
+          </div>
         </div>
       </div>
     );

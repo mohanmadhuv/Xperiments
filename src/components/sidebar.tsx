@@ -58,7 +58,7 @@ export function Sidebar() {
         }`}
       >
         {!collapsed && (
-          <Link href="/" className="whitespace-nowrap font-semibold tracking-tight">
+          <Link href="/" className="whitespace-nowrap pl-2 font-semibold tracking-tight">
             UI Xperiments
           </Link>
         )}
