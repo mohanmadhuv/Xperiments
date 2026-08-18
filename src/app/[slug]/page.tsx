@@ -39,7 +39,7 @@ export default async function SlugPage({
           <div className="flex flex-col gap-[16px]">
             <p className="text-muted-foreground">{project.description}</p>
             <div className="mb-[16px] flex flex-col">
-              <div className="flex min-h-[480px] items-center justify-center rounded-lg border bg-panel">
+              <div className="relative flex min-h-[480px] items-center justify-center rounded-lg border bg-panel">
                 {ProjectComponent && <ProjectComponent />}
               </div>
               {project.caption && (

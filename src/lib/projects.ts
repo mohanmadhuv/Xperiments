@@ -1,4 +1,5 @@
 import type { ComponentType } from "react";
+import { ButtonsOnSurfacesDemo } from "@/components/buttons-on-surfaces-demo";
 
 export type ProjectSection = {
   heading: string;
@@ -23,10 +24,11 @@ export type ProjectEntry = {
 export const projects: ProjectEntry[] = [
   {
     slug: "buttons-on-surfaces",
-    name: "Buttons on surfaces",
-    title: "Buttons on surfaces",
+    name: "Buttons on Surfaces",
+    title: "Buttons on Surfaces",
     description:
       "A button's core job never changes, but its feedback has to. Hover, press, and focus states need to stay legible whether the button sits on a flat card, a colored panel, or a translucent overlay. This set explores how the same interaction language holds up — and bends — across those surfaces.",
+    component: ButtonsOnSurfacesDemo,
     caption: "Primary and secondary variants across light, dark, and colored surfaces.",
     sections: [
       {
