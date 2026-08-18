@@ -59,7 +59,7 @@ export function Sidebar() {
       >
         {!collapsed && (
           <Link href="/" className="whitespace-nowrap pl-2 font-semibold tracking-tight">
-            UI Xperiments
+            DesEng Journal
           </Link>
         )}
         <button

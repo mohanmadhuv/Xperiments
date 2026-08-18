@@ -1,4 +1,4 @@
-# Xperiments
+# DesEng Journal
 
 Design engineering practice: animations, transitions, and components, built one at a time and posted along the way.
 

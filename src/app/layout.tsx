@@ -10,8 +10,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ui-xperiments.vercel.app"),
-  title: "Xperiments",
+  metadataBase: new URL("https://deseng-journal.vercel.app"),
+  title: "DesEng Journal",
   description: "Design engineering practice — components, animations, transitions.",
 };
 
