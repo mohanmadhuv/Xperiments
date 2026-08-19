@@ -2,14 +2,19 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { components } from "@/lib/registry";
 import { projects } from "@/lib/projects";
 
-// Matches Tailwind's `md` breakpoint — used only to pick the initial
-// open/closed default, not to change any interaction or styling.
+// Matches Tailwind's `md` breakpoint. Below it the sidebar is a fixed
+// off-canvas overlay with a dimming backdrop; at or above it, it's an
+// in-flow panel that pushes (and recenters) the work area — no overlay.
 const DESKTOP_BREAKPOINT = 768;
+
+function getIsDesktop() {
+  return typeof window !== "undefined" && window.matchMedia(`(min-width: ${DESKTOP_BREAKPOINT}px)`).matches;
+}
 
 // Drawer slide — animations.dev's Drawer/Sheet recipe: ease-out enter,
 // faster exit, backdrop fades with the same timing as the panel.
@@ -120,14 +125,60 @@ function SidebarNav({ pathname }: { pathname: string }) {
 export function Sidebar() {
   const pathname = usePathname();
   const prefersReducedMotion = useReducedMotion();
+  const [isDesktop, setIsDesktop] = useState(getIsDesktop);
   // Desktop defaults to open; mobile defaults to closed. This is the only
   // difference between the two — from here on it's identical, and only
   // changes when explicitly opened or dismissed.
-  const [open, setOpen] = useState(
-    () =>
-      typeof window !== "undefined" &&
-      window.matchMedia(`(min-width: ${DESKTOP_BREAKPOINT}px)`).matches,
-  );
+  const [open, setOpen] = useState(getIsDesktop);
+
+  useEffect(() => {
+    const mql = window.matchMedia(`(min-width: ${DESKTOP_BREAKPOINT}px)`);
+    function handleChange(event: MediaQueryListEvent) {
+      setIsDesktop(event.matches);
+    }
+    mql.addEventListener("change", handleChange);
+    return () => mql.removeEventListener("change", handleChange);
+  }, []);
+
+  const instant = { duration: 0 };
+
+  if (isDesktop) {
+    return (
+      <>
+        {!open && <SidebarTrigger onClick={() => setOpen(true)} />}
+
+        <AnimatePresence initial={false}>
+          {open && (
+            <motion.aside
+              key="desktop-panel"
+              className="relative z-10 h-full shrink-0 overflow-hidden bg-panel shadow-panel"
+              initial={{ width: 0 }}
+              animate={{ width: 256, transition: prefersReducedMotion ? instant : enterTransition }}
+              exit={{ width: 0, transition: prefersReducedMotion ? instant : exitTransition }}
+            >
+              <div className="flex h-full w-64 shrink-0 flex-col">
+                <div className="flex shrink-0 items-center justify-between px-3 py-6">
+                  <Link href="/" className="whitespace-nowrap pl-2 font-semibold tracking-tight">
+                    DesEng Journal
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => setOpen(false)}
+                    aria-label="Collapse sidebar"
+                    className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors duration-0 hover:bg-item-hover hover:text-foreground"
+                  >
+                    <ChevronIcon collapsed={false} />
+                  </button>
+                </div>
+
+                <SidebarNav pathname={pathname} />
+              </div>
+            </motion.aside>
+          )}
+        </AnimatePresence>
+      </>
+    );
+  }
 
   const drawerX = prefersReducedMotion ? 0 : "-100%";
 
